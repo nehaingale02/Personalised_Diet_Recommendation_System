@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BMI Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+        }
+        .container {
+            max-width: 400px;
+            margin: auto;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        }
+        input, select, button {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            background-color: #28a745;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>BMI Calculator</h2>
+        <label>Age:</label>
+        <input type="number" id="age" placeholder="Enter your age">
+
+        <label>Gender:</label>
+        <select id="gender">
+            <option value="M">Male</option>
+            <option value="F">Female</option>
+            <option value="O">Others</option>
+        </select>
+
+        <label>Weight (kg):</label>
+        <input type="number" id="weight" placeholder="Enter your weight">
+
+        <label>Height (feet):</label>
+        <input type="number" id="heightFeet" placeholder="Enter your height in feet">
+
+        <button onclick="calculateBMI()">Calculate BMI</button>
+        
+        <h3 id="result"></h3>
+    </div>
+
+    <script>
+        function calculateBMI() {
+            let age = parseInt(document.getElementById("age").value);
+            let gender = document.getElementById("gender").value;
+            let weight = parseFloat(document.getElementById("weight").value);
+            let heightFeet = parseFloat(document.getElementById("heightFeet").value);
+            
+            if (isNaN(age) || isNaN(weight) || isNaN(heightFeet) || heightFeet <= 0 || weight <= 0) {
+                document.getElementById("result").innerText = "❌ Please enter valid values.";
+                return;
+            }
+            
+            let heightInches = heightFeet * 12; // Convert feet to inches
+            let heightMeters = heightInches * 0.0254; // Convert inches to meters
+            let bmi = weight / (heightMeters * heightMeters);
+            let category = "";
+
+            if (age < 18) {
+                category = "⚠️ BMI interpretation for children varies with age.";
+            } else {
+                if (bmi < 18.5) {
+                    category = "🔹 Underweight";
+                } else if (bmi < 24.9) {
+                    category = "✅ Normal weight";
+                } else if (bmi < 29.9) {
+                    category = "⚠️ Overweight";
+                } else {
+                    category = "❌ Obese";
+                }
+            }
+            
+            document.getElementById("result").innerHTML = `<strong>Your BMI:</strong> ${bmi.toFixed(2)} <br><strong>Category:</strong> ${category}`;
+        }
+    </script>
+</body>
+</html>

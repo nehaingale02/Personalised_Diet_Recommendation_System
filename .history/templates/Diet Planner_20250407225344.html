@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dosha Diet Recommendation</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/Diet Planner.css') }}">
+    <style>
+        body {
+            background-image: url("{{ url_for('static', filename='assets/ayurveda-background.jpg') }}");
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+        .container {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 2rem;
+            border-radius: 10px;
+            margin: 2rem auto;
+            max-width: 600px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Dosha Diet Recommendation</h2>
+        
+        <label for="dosha">Select Your Dosha:</label>
+        <select id="dosha">
+            <option value="vata">Vata</option>
+            <option value="pitta">Pitta</option>
+            <option value="kapha">Kapha</option>
+        </select>
+
+        <h3>Select Any Disease You Have:</h3>
+        <!-- <div class="checkbox-group">
+            <label class="checkbox-label">
+                <input type="checkbox" name="disease" value="Obesity"> Obesity
+            </label>
+            <label class="checkbox-label">
+                <input type="checkbox" name="disease" value="Hypertension"> Hypertension
+            </label>
+            <label class="checkbox-label">
+                <input type="checkbox" name="disease" value="Heart Disease"> Heart Disease
+            </label>
+            <label class="checkbox-label">
+                <input type="checkbox" name="disease" value="Diabetes"> Diabetes
+            </label>
+            <label class="checkbox-label">
+                <input type="checkbox" name="disease" value="Acidity"> Acidity
+            </label>
+            <label class="checkbox-label">
+                <input type="checkbox" name="disease" value="None"> None
+            </label>
+        </div> -->
+        <div class="radio-group">
+            <label class="radio-label">
+                <input type="radio" name="disease" value="Obesity"> Obesity
+            </label>
+            <label class="radio-label">
+                <input type="radio" name="disease" value="Hypertension"> Hypertension
+            </label>
+            <label class="radio-label">
+                <input type="radio" name="disease" value="Heart Disease"> Heart Disease
+            </label>
+            <label class="radio-label">
+                <input type="radio" name="disease" value="Diabetes"> Diabetes
+            </label>
+            <label class="radio-label">
+                <input type="radio" name="disease" value="Acidity"> Acidity
+            </label>
+            <label class="radio-label">
+                <input type="radio" name="disease" value="None"> None
+            </label>
+        </div>
+        
+        
+        <label for="dishType">Select Type of Dish:</label>
+        <select id="dishType">
+            <option value="Main Course">Main Course</option>
+            <option value="Salad">Salad</option>
+            <option value="Dessert">Dessert</option>
+            <option value="Soup">Soup</option>
+            <option value="Curry">Curry</option>
+            <option value="Snack">Snack</option>
+            <option value="Side Dish">Side Dish</option>
+        </select>
+
+        <button onclick="getRecommendation()">Get Recommendation</button>
+
+        <h3 id="result"></h3>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>
